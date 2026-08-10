@@ -34,6 +34,8 @@
         <a href="#home" class="nav__link nav__link--active">Home</a>
         <a href="#sobre" class="nav__link">Sobre Nós</a>
         <a href="#servicos" class="nav__link">Serviços</a>
+        <a href="#noticias" class="nav__link">Notícias</a>
+        <a href="#simuladores" class="nav__link">Simuladores</a>
         <a href="#contato" class="nav__link">Contato</a>
       </nav>
     </div>
@@ -174,6 +176,163 @@
   </div>
 </section>
 
+<!-- ===================== NOTÍCIAS ===================== -->
+<section class="news" id="noticias">
+  <div class="news__box">
+    <h2 class="news__title">Últimas Notícias</h2>
+    <div class="news__grid">
+      <!-- Notícia 1 -->
+      <div class="news-card">
+        <img src="img/Reformatribut.png" alt="Documentos e calculadora simbolizando a reforma tributária" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Reforma Tributária</span>
+          <h3 class="news-card__title">Reforma Tributária 2026: O que Muda para sua Empresa?</h3>
+          <p class="news-card__description">A transição para o novo sistema com IBS e CBS começa em 2026. Empresas do Simples Nacional não terão mudanças imediatas, mas precisam se atentar aos impactos na cadeia de suprimentos. [2]</p>
+          <a href="reforma-tributaria.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+      <!-- Notícia 2 -->
+      <div class="news-card">
+        <img src="img/eSocial.png" alt="Tela de computador exibindo códigos e gráficos do eSocial" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Obrigações Acessórias</span>
+          <h3 class="news-card__title">eSocial, EFD-Reinf e DCTFWeb: Novidades e Prazos</h3>
+          <p class="news-card__description">Fique por dentro das últimas atualizações da DCTFWeb e da implementação do PIS/Pasep sobre a folha de salários no eSocial, que entrou em vigor em 2024. [3, 22]</p>
+          <a href="obrigacoes-acessorias.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+      <!-- Notícia 3 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="Pessoas em uma reunião de negócios discutindo sobre o Simples Nacional" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Simples Nacional</span>
+          <h3 class="news-card__title">Simples Nacional Híbrido: Uma Nova Opção a Partir de 2026</h3>
+          <p class="news-card__description">Com a Reforma Tributária, empresas do Simples poderão optar por um regime híbrido, calculando o novo imposto (IBS/CBS) fora do regime tradicional, caso seja mais vantajoso. [1]</p>
+          <a href="simples-nacional-hibrido.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SIMULADORES ===================== -->
+<section class="simulators" id="simuladores">
+  <div class="simulators__box">
+    <h2 class="simulators__title">Nossos Simuladores</h2>
+    <p class="simulators__description">Utilize nossas ferramentas para obter estimativas rápidas. *Os cálculos são simplificados, consulte um especialista para valores exatos.</p>
+
+    <div class="simulators__tabs">
+      <button class="simulators__tab-btn active" data-tab="simples">Simples Nacional</button>
+      <button class="simulators__tab-btn" data-tab="salario">Salário Líquido</button>
+      <button class="simulators__tab-btn" data-tab="ferias">Cálculo de Férias</button>
+    </div>
+
+    <div class="simulators__content">
+      <!-- Painel Simples Nacional -->
+      <div class="simulator__pane active" id="pane-simples">
+        <div class="simulator__grid">
+          <div class="simulator__form">
+            <div class="simulator__form-group">
+              <label for="faturamentoMensal" class="simulator__label">Faturamento Mensal (R$)</label>
+              <input type="text" id="faturamentoMensal" class="simulator__input" placeholder="Ex: 10.000,00" required>
+            </div>
+            <div class="simulator__form-group">
+              <label for="tipoAtividade" class="simulator__label">Tipo de Atividade (Anexo)</label>
+              <select id="tipoAtividade" class="simulator__select">
+                <option value="anexo1">Comércio (Anexo I)</option>
+                <option value="anexo2">Indústria (Anexo II)</option>
+                <option value="anexo3">Serviços (Anexo III)</option>
+                <option value="anexo4">Serviços (Anexo IV - Sem Fator R)</option>
+                <option value="anexo5">Serviços (Anexo V)</option>
+              </select>
+            </div>
+            <button id="calcularSimples" class="btn btn--gold simulator__button">Calcular</button>
+          </div>
+          <div class="simulator__result-wrapper">
+            <h3 class="simulator__result-title">Resultado da Simulação</h3>
+            <div class="simulator__result" id="resultadoSimples">
+              <p><strong>Imposto Estimado:</strong> <span id="impostoEstimado">R$ 0,00</span></p>
+              <p><strong>Alíquota Efetiva:</strong> <span id="aliquotaEfetiva">0.00%</span></p>
+              <button id="downloadSimplesPDF" class="btn btn--gold simulator__button download-btn">Baixar PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Painel Salário Líquido -->
+      <div class="simulator__pane" id="pane-salario">
+        <div class="simulator__grid">
+          <div class="simulator__form">
+            <div class="simulator__form-group">
+              <label for="salarioBruto" class="simulator__label">Salário Bruto (R$)</label>
+              <input type="text" id="salarioBruto" class="simulator__input" placeholder="Ex: 3.000,00" required>
+            </div>
+            <div class="simulator__form-group">
+              <label for="numeroDependentes" class="simulator__label">Nº de Dependentes</label>
+              <input type="number" id="numeroDependentes" class="simulator__input" value="0" min="0" step="1">
+            </div>
+            <div class="simulator__form-group">
+              <label for="outrosDescontos" class="simulator__label">Outros Descontos (R$)</label>
+              <input type="text" id="outrosDescontos" class="simulator__input" placeholder="Ex: 150,00">
+            </div>
+            <button id="calcularSalario" class="btn btn--gold simulator__button">Calcular</button>
+          </div>
+          <div class="simulator__result-wrapper">
+            <h3 class="simulator__result-title">Resultado da Simulação</h3>
+            <div class="simulator__result" id="resultadoSalario">
+              <p>Salário Bruto: <span id="resSalarioBruto">R$ 0,00</span></p>
+              <p class="desconto">(-) Desconto INSS: <span id="resDescontoINSS">R$ 0,00</span></p>
+              <p class="desconto">(-) Desconto IRPF: <span id="resDescontoIRPF">R$ 0,00</span></p>
+              <p class="desconto">(-) Outros Descontos: <span id="resOutrosDescontos">R$ 0,00</span></p>
+              <p class="total"><strong>Salário Líquido:</strong> <span id="resSalarioLiquido">R$ 0,00</span></p>
+              <button id="downloadSalarioPDF" class="btn btn--gold simulator__button download-btn">Baixar PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Painel Cálculo de Férias -->
+      <div class="simulator__pane" id="pane-ferias">
+        <div class="simulator__grid">
+          <div class="simulator__form">
+            <div class="simulator__form-group">
+              <label for="feriasSalarioBruto" class="simulator__label">Salário Bruto (R$)</label>
+              <input type="text" id="feriasSalarioBruto" class="simulator__input" placeholder="Ex: 3.000,00" required>
+            </div>
+            <div class="simulator__form-group">
+              <label for="feriasDias" class="simulator__label">Dias de Férias</label>
+              <input type="number" id="feriasDias" class="simulator__input" value="30" min="1" max="30">
+            </div>
+            <div class="simulator__form-group">
+              <label for="feriasDependentes" class="simulator__label">Nº de Dependentes (para IRPF)</label>
+              <input type="number" id="feriasDependentes" class="simulator__input" value="0" min="0">
+            </div>
+            <div class="simulator__form-group simulator__form-group--checkbox">
+              <input type="checkbox" id="venderFerias" class="simulator__checkbox">
+              <label for="venderFerias" class="simulator__checkbox-label">Vender 1/3 das férias (abono pecuniário)?</label>
+            </div>
+            <div class="simulator__form-group simulator__form-group--checkbox">
+              <input type="checkbox" id="adiantar13" class="simulator__checkbox">
+              <label for="adiantar13" class="simulator__checkbox-label">Adiantar 1ª parcela do 13º salário?</label>
+            </div>
+            <button id="calcularFerias" class="btn btn--gold simulator__button">Calcular</button>
+          </div>
+          <div class="simulator__result-wrapper">
+            <h3 class="simulator__result-title">Resultado da Simulação</h3>
+            <div class="simulator__result" id="resultadoFerias">
+              <p>Total Bruto de Férias: <span id="resFeriasBruto">R$ 0,00</span></p>
+              <p class="desconto">(-) Desconto INSS: <span id="resFeriasINSS">R$ 0,00</span></p>
+              <p class="desconto">(-) Desconto IRPF: <span id="resFeriasIRPF">R$ 0,00</span></p>
+              <p class="total"><strong>Líquido a Receber:</strong> <span id="resFeriasLiquido">R$ 0,00</span></p>
+              <button id="downloadFeriasPDF" class="btn btn--gold simulator__button download-btn">Baixar PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CONTATO ===================== -->
 <section class="contact" id="contato">
   <div class="contact__box">
@@ -251,6 +410,8 @@
   </div>
 </div>
 
+<!-- Biblioteca para gerar PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
