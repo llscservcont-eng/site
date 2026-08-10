@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const textoWhatsApp = `*Novo Contato do Site*%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*E-mail:* ${encodeURIComponent(email)}%0A*Mensagem:* ${encodeURIComponent(mensagem)}`;
       
-      window.open(`https://wa.me/5511964269198?text=${textoWhatsApp}`, '_blank');
+      window.open(`https://wa.me/5511982511791?text=${textoWhatsApp}`, '_blank');
     });
   }
 
@@ -245,8 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const generateAndShowWhatsappLink = (delay) => {
-    const textoWhatsApp = `*Contato via Assistente Virtual*%0A%0A*Nome:* ${encodeURIComponent(userData.name)}%0A*E-mail:* ${encodeURIComponent(userData.email)}%0A*WhatsApp:* ${encodeURIComponent(userData.whatsapp)}%0A*Interesse:* ${encodeURIComponent(userData.service)}%0A*Observação:* ${encodeURIComponent(userData.message)}`;
-    const whatsappUrl = `https://wa.me/5511964269198?text=${textoWhatsApp}`;
+    const textoWhatsApp = `*Contato via Assistente Virtual*%0A%0A*Nome:* ${encodeURIComponent(userData.name)}%0A*E-mail:* ${encodeURIComponent(userData.email)}%0A*WhatsApp:* ${encodeURIComponent(userData.whatsapp)}%0A*Interesse:* ${encodeURIComponent(userData.service)}%0A*Observação:* ${encodeURIComponent(userData.message || 'Nenhuma')}`;
+    const whatsappUrl = `https://wa.me/5511982511791?text=${textoWhatsApp}`;
     setTimeout(() => {
       const linkMessage = `Clique aqui para enviar: <a href="${whatsappUrl}" target="_blank"><strong>Abrir WhatsApp</strong></a>`;
       const messageElement = document.createElement('div');
