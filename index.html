@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLSC | Lucas Lima Serviços Contábeis</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="#" class="logo">
+      <svg class="logo__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 38V24L14 30V38H6Z" fill="#C9A24A"/>
+        <path d="M17 38V18L25 24V38H17Z" fill="#C9A24A"/>
+        <path d="M28 38V12L36 18V38H28Z" fill="#C9A24A"/>
+        <path d="M4 26L16 16L26 22L40 8" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M32 8H40V16" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__divider"></span>
+      <span class="logo__text">
+        <span class="logo__title">LLSC</span>
+        <span class="logo__subtitle">Lucas Lima Serviços Contábeis</span>
+      </span>
+    </a>
+
+    <div class="nav-container" id="nav-container">
+      <nav class="nav" id="nav-menu">
+        <a href="#home" class="nav__link nav__link--active">Home</a>
+        <a href="#sobre" class="nav__link">Sobre Nós</a>
+        <a href="#servicos" class="nav__link">Serviços</a>
+        <a href="#contato" class="nav__link">Contato</a>
+      </nav>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+
+    <a href="https://wa.me/5511964269198?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="btn btn--gold">Solicite um Orçamento</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="hero__frame">
+    <div class="hero__content">
+      <p class="hero__subtitle">LLSC - Lucas Lima Serviços Contábeis</p>
+      <h1 class="hero__title">Contabilidade Estratégica e Confiável para sua Empresa.</h1>
+      <p class="hero__text">Soluções Fiscais, Trabalhistas e Consultoria Financeira.</p>
+    </div>
+
+    <div class="hero__brand-card">
+      <svg class="hero__brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 38V24L14 30V38H6Z" fill="#C9A24A"/>
+        <path d="M17 38V18L25 24V38H17Z" fill="#C9A24A"/>
+        <path d="M28 38V12L36 18V38H28Z" fill="#C9A24A"/>
+        <path d="M4 26L16 16L26 22L40 8" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M32 8H40V16" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="hero__brand-divider"></span>
+      <div class="hero__brand-text">
+        <span class="hero__brand-title">LLSC</span>
+        <span class="hero__brand-subtitle">Lucas Lima Serviços Contábeis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOBRE NÓS ===================== -->
+<section class="about" id="sobre">
+  <div class="about__box">
+    <div class="about__image-container">
+      <!-- Usando a imagem local da sua pasta -->
+      <img src="img/IMAGEM3.png" alt="Escritório da LLSC Serviços Contábeis" class="about__image">
+    </div>
+    <div class="about__content">
+      <h2 class="about__title">Nossa História</h2>
+      <p class="about__text">
+        Fundada com a missão de transformar a contabilidade em uma ferramenta estratégica para empresas, a LLSC nasceu da paixão por números e do desejo de impulsionar o sucesso de nossos clientes. Acreditamos que um serviço contábil de excelência vai além do cumprimento de obrigações fiscais.
+      </p>
+      <p class="about__text">
+        Com uma equipe dedicada e em constante atualização, combinamos tecnologia e conhecimento técnico para oferecer soluções personalizadas, transparentes e eficientes. Nosso compromisso é ser mais que um contador: somos o parceiro estratégico que sua empresa precisa para crescer com segurança e sustentabilidade.
+      </p>
+      <div class="about__crc">
+        <strong>Lucas Lima</strong><br>
+        Contador / CEO
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVIÇOS (LISTA) ===================== -->
+<section class="services" id="servicos">
+  <div class="services__box">
+    <h2 class="services__title">Nossas Soluções</h2>
+    <div class="services__grid">
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
+        <span class="service-item__text">Abertura e Legalização de Empresas</span>
+      </div>
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20V16"/></svg></div>
+        <span class="service-item__text">Planejamento Tributário</span>
+      </div>
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
+        <span class="service-item__text">Escrituração Contábil e Fiscal</span>
+      </div>
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <span class="service-item__text">Departamento Pessoal Completo</span>
+      </div>
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="1" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <span class="service-item__text">Consultoria Financeira e Empresarial</span>
+      </div>
+      <div class="service-item">
+        <div class="service-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><path d="M16 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/></svg></div>
+        <span class="service-item__text">Imposto de Renda (PF e PJ)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARDS DE SERVIÇOS ===================== -->
+<section class="feature-cards" id="diferenciais">
+  <div class="feature-card">
+    <div class="feature-card__icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 21V4C4 3.44772 4.44772 3 5 3H15C15.5523 3 16 3.44772 16 4V21" stroke="#C9A24A" stroke-width="1.5"/>
+        <path d="M16 21V9C16 8.44772 16.4477 8 17 8H19C19.5523 8 20 8.44772 20 9V21" stroke="#C9A24A" stroke-width="1.5"/>
+        <path d="M4 21H20" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M7 7H9" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M7 11H9" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M7 15H9" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 7H13" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 11H13" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 15H13" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h3 class="feature-card__title">Abertura de Empresas</h3>
+    <p class="feature-card__text">Oferecemos às empresas todo o suporte necessário para a abertura de negócios, do planejamento ao registro final.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-card__icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 3H14L18 7V21H7C6.44772 21 6 20.5523 6 20V4C6 3.44772 6.44772 3 7 3Z" stroke="#C9A24A" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M14 3V7H18" stroke="#C9A24A" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M9 12L11 14L15 10" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3 class="feature-card__title">Fiscal &amp; Tributário</h3>
+    <p class="feature-card__text">Soluções completas em rotinas fiscais e tributárias, com foco em conformidade e economia para o seu negócio.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-card__icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9" cy="8" r="3" stroke="#C9A24A" stroke-width="1.5"/>
+        <path d="M3 20C3 16.6863 5.68629 14 9 14C12.3137 14 15 16.6863 15 20" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="17" cy="8" r="2.5" stroke="#C9A24A" stroke-width="1.5"/>
+        <path d="M15.5 14.5C18.5376 14.9312 21 17.2 21 20" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h3 class="feature-card__title">Gestão de Pessoal</h3>
+    <p class="feature-card__text">Gestão de pessoal completa, com processos ágeis e seguros para folha de pagamento, admissões e obrigações trabalhistas.</p>
+  </div>
+</section>
+
+<!-- ===================== CONTATO ===================== -->
+<section class="contact" id="contato">
+  <div class="contact__box">
+    <h2 class="contact__title">Contato</h2>
+
+    <div class="contact__info">
+      <a href="https://wa.me/5511964269198" target="_blank" class="contact__info-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.5 4H9L11 9L8.5 10.5C9.5 12.5 11.5 14.5 13.5 15.5L15 13L20 15V17.5C20 18.6 19.1 19.5 18 19.4C11.5 18.9 5.1 12.5 4.6 6C4.5 4.9 5.4 4 6.5 4Z" stroke="#C9A24A" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        (11) 96426-9198
+      </a>
+      <a href="mailto:llscservcont@gmail.com" class="contact__info-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="#C9A24A" stroke-width="1.5"/>
+          <path d="M3 7L12 13L21 7" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        llscservcont@gmail.com
+      </a>
+    </div>
+
+    <form class="contact__form" id="contactForm">
+      <div class="contact__form-row">
+        <div class="contact__form-group">
+          <label for="nome" class="visually-hidden">Nome</label>
+          <input type="text" id="nome" placeholder="Nome" class="contact__input" required>
+        </div>
+        <div class="contact__form-group">
+          <label for="email" class="visually-hidden">E-mail</label>
+          <input type="email" id="email" placeholder="E-mail" class="contact__input" required>
+        </div>
+      </div>
+      <div class="contact__form-group">
+        <label for="mensagem" class="visually-hidden">Mensagem</label>
+        <textarea id="mensagem" placeholder="Mensagem" class="contact__textarea" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--gold contact__submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <p class="footer__copy">© Lucas Lima Serviços Contábeis</p>
+  <div class="footer__social">
+    <a href="https://www.facebook.com/profile.php?id=61592850191911" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M14 9H16V6H14C12.3431 6 11 7.34315 11 9V11H9V14H11V19H14V14H16L17 11H14V9.5C14 9.22386 14.2239 9 14 9Z" stroke="#C9A24A" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="https://www.instagram.com/llscservcont/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#C9A24A" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="#C9A24A" stroke-width="1.3"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A24A"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/139464637/admin/page-posts/published/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 9H2V21H6V9Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ===================== CHATBOT ===================== -->
+<div class="chat-widget">
+  <div class="chat-widget__bubble" id="chat-bubble">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9.47 14.12h-.01c-.42 0-.8-.19-.91-.29s-.33-.4-.33-.95.19-.82.33-.95.49-.29.91-.29.8.19.91.29.33.4.33.95-.19.82-.33.95c-.1.1-.49.29-.91.29zm5.06 0h-.01c-.42 0-.8-.19-.91-.29s-.33-.4-.33-.95.19-.82.33-.95.49-.29.91-.29.8.19.91.29.33.4.33.95-.19.82-.33.95c-.1.1-.49.29-.91.29z"/></svg>
+  </div>
+  <div class="chat-widget__window" id="chat-window">
+    <div class="chat-widget__header">
+      <span class="chat-widget__title">Assistente Virtual</span>
+      <button class="chat-widget__close" id="chat-close">&times;</button>
+    </div>
+    <div class="chat-widget__body" id="chat-body">
+      <!-- As mensagens do chat aparecerão aqui -->
+    </div>
+    <div class="chat-widget__footer">
+      <input type="text" id="chat-input" placeholder="Digite sua resposta..." class="chat-widget__input">
+      <button id="chat-send" class="chat-widget__send">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
