@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
+      const telefone = document.getElementById('telefone').value;
       const mensagem = document.getElementById('mensagem').value;
       
-      const textoWhatsApp = `*Novo Contato do Site*%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*E-mail:* ${encodeURIComponent(email)}%0A*Mensagem:* ${encodeURIComponent(mensagem)}`;
+      const textoWhatsApp = `*Novo Contato do Site*%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*E-mail:* ${encodeURIComponent(email)}%0A*Telefone:* ${encodeURIComponent(telefone)}%0A*Mensagem:* ${encodeURIComponent(mensagem)}`;
       
       window.open(`https://wa.me/5511982511791?text=${textoWhatsApp}`, '_blank');
     });
@@ -36,19 +37,194 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Lógica para animação ao rolar (Intersection Observer)
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Deixa de observar após animar
       }
     });
   }, {
     threshold: 0.1 // Anima quando 10% do elemento estiver visível
   });
 
-  // Observa todas as seções e cards
-  const elementsToAnimate = document.querySelectorAll('.hero, .about, .feature-card, .services, .news, .simulators, .contact');
-  elementsToAnimate.forEach(el => observer.observe(el));
+  // Aplica animação escalonada (stagger)
+  const elementsToAnimate = document.querySelectorAll('.hero__brand-card, .cta-plans, .about, .feature-card, .services, .service-item, .news, .simulators, .faq, .contact');
+  elementsToAnimate.forEach((el, index) => {
+    el.style.transitionDelay = `${index * 50}ms`;
+    observer.observe(el);
+  });
+
+  // Lógica do carrossel de Notícias (mostra 1 notícia por vez)
+  const newsTrack = document.getElementById('newsTrack');
+  const newsPrevBtn = document.getElementById('newsPrev');
+  const newsNextBtn = document.getElementById('newsNext');
+  const newsDotsContainer = document.getElementById('newsDots');
+  const newsCarousel = document.querySelector('.news__carousel');
+
+  if (newsTrack && newsPrevBtn && newsNextBtn && newsDotsContainer) {
+    const newsSlides = Array.from(newsTrack.children);
+    let newsCurrentIndex = 0;
+    let newsAutoplayId = null;
+    const NEWS_AUTOPLAY_DELAY = 7000;
+
+    // Cria os indicadores (dots), um para cada notícia
+    newsSlides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('news__dot');
+      dot.setAttribute('aria-label', `Ir para notícia ${index + 1}`);
+      dot.addEventListener('click', () => {
+        goToNewsSlide(index);
+        restartNewsAutoplay();
+      });
+      newsDotsContainer.appendChild(dot);
+    });
+    const newsDots = Array.from(newsDotsContainer.children);
+
+    function getSlideWidth() {
+      return newsTrack.parentElement.getBoundingClientRect().width;
+    }
+
+    function goToNewsSlide(index) {
+      newsCurrentIndex = (index + newsSlides.length) % newsSlides.length;
+      const offset = getSlideWidth() * newsCurrentIndex;
+      newsTrack.style.transform = `translateX(-${offset}px)`;
+      newsDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === newsCurrentIndex);
+      });
+    }
+
+    // Recalcula a posição ao redimensionar a janela
+    window.addEventListener('resize', () => {
+      newsTrack.style.transition = 'none';
+      goToNewsSlide(newsCurrentIndex);
+      requestAnimationFrame(() => {
+        newsTrack.style.transition = '';
+      });
+    });
+
+    function startNewsAutoplay() {
+      newsAutoplayId = setInterval(() => {
+        goToNewsSlide(newsCurrentIndex + 1);
+      }, NEWS_AUTOPLAY_DELAY);
+    }
+
+    function stopNewsAutoplay() {
+      clearInterval(newsAutoplayId);
+    }
+
+    function restartNewsAutoplay() {
+      stopNewsAutoplay();
+      startNewsAutoplay();
+    }
+
+    newsPrevBtn.addEventListener('click', () => {
+      goToNewsSlide(newsCurrentIndex - 1);
+      restartNewsAutoplay();
+    });
+
+    newsNextBtn.addEventListener('click', () => {
+      goToNewsSlide(newsCurrentIndex + 1);
+      restartNewsAutoplay();
+    });
+
+    // Pausa o autoplay quando o usuário interage com o carrossel
+    if (newsCarousel) {
+      newsCarousel.addEventListener('mouseenter', stopNewsAutoplay);
+      newsCarousel.addEventListener('mouseleave', startNewsAutoplay);
+    }
+
+    // Suporte a swipe (arrastar) no mobile
+    let newsTouchStartX = 0;
+    let newsTouchEndX = 0;
+
+    newsTrack.addEventListener('touchstart', (e) => {
+      newsTouchStartX = e.changedTouches[0].screenX;
+      stopNewsAutoplay();
+    }, { passive: true });
+
+    newsTrack.addEventListener('touchend', (e) => {
+      newsTouchEndX = e.changedTouches[0].screenX;
+      const deltaX = newsTouchEndX - newsTouchStartX;
+      const SWIPE_THRESHOLD = 50;
+      if (deltaX > SWIPE_THRESHOLD) {
+        goToNewsSlide(newsCurrentIndex - 1);
+      } else if (deltaX < -SWIPE_THRESHOLD) {
+        goToNewsSlide(newsCurrentIndex + 1);
+      }
+      restartNewsAutoplay();
+    }, { passive: true });
+
+    goToNewsSlide(0);
+    startNewsAutoplay();
+  }
+
+  // Lógica para o FAQ (acordeão - apenas um aberto por vez)
+  const faqItems = document.querySelectorAll('.faq__item');
+
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', (event) => {
+      if (event.target.open) {
+        faqItems.forEach(otherItem => {
+          if (otherItem !== event.target) {
+            otherItem.open = false;
+          }
+        });
+      }
+    });
+  });
+
+  // Lógica para animação de digitação na seção Hero
+  const typewriter = (element, text, i = 0, callback) => {
+    if (i < text.length) {
+      element.innerHTML = text.substring(0, i + 1) + '<span class="typing-cursor"></span>';
+      setTimeout(() => typewriter(element, text, i + 1, callback), 50);
+    } else {
+      // Remove o cursor piscando da linha atual antes de chamar o callback
+      element.innerHTML = text;
+      if (callback) {
+        callback();
+      }
+    }
+  };
+
+  const heroSubtitle = document.querySelector('.hero__subtitle');
+  const heroTitle = document.querySelector('.hero__title');
+  const heroText = document.querySelector('.hero__text');
+
+  const subtitleText = heroSubtitle.textContent;
+  const titleText = heroTitle.textContent;
+  const textText = heroText.textContent;
+
+  // Limpa o conteúdo inicial
+  heroSubtitle.textContent = '';
+  heroTitle.textContent = '';
+  heroText.textContent = '';
+
+  const TYPEWRITER_LOOP_DELAY = 10000; // Tempo parado antes de reiniciar a animação (10s)
+
+  // Executa a sequência de digitação e, ao terminar, agenda a repetição
+  const runTypewriterSequence = () => {
+    heroSubtitle.style.opacity = 1;
+    typewriter(heroSubtitle, subtitleText, 0, () => {
+      heroTitle.style.opacity = 1;
+      typewriter(heroTitle, titleText, 0, () => {
+        heroText.style.opacity = 1;
+        typewriter(heroText, textText, 0, () => {
+          // Aguarda o tempo definido e reinicia a animação do zero
+          setTimeout(() => {
+            heroSubtitle.textContent = '';
+            heroTitle.textContent = '';
+            heroText.textContent = '';
+            runTypewriterSequence();
+          }, TYPEWRITER_LOOP_DELAY);
+        });
+      });
+    });
+  };
+
+  // Inicia a animação em sequência
+  setTimeout(runTypewriterSequence, 500); // Delay inicial
 
 
   // Lógica para destacar link do menu ao rolar (Scroll Spy)
@@ -56,42 +232,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav__link');
   const header = document.querySelector('.header');
 
-  const handleHeaderScroll = () => {
-    if (window.scrollY > 50) {
+  const onScroll = () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 50) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-  };
 
-  const onScroll = () => {
-    const scrollY = window.scrollY;
-    const headerHeight = document.querySelector('.header').offsetHeight; // Obtém a altura dinâmica do cabeçalho
-    const offset = headerHeight + 20; // Offset: altura do cabeçalho + 20px para melhor visualização
+    const offset = header.offsetHeight + 50;
 
-    let activeSectionId = 'home';
+    sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - offset;
+      const sectionId = current.getAttribute('id');
+      const navLink = document.querySelector(`.nav__link[href*=${sectionId}]`);
 
-    // Itera pelas seções de trás para frente para priorizar as que estão mais acima na tela
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const section = sections[i];
-      const sectionTop = section.offsetTop;
-      const sectionBottom = section.offsetTop + section.offsetHeight;
+      if (navLink) {
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLink.classList.add('nav__link--active');
+        } else {
+          navLink.classList.remove('nav__link--active');
+        }
+      }
+    });
 
-      // Verifica se o topo da seção está dentro da área visível, considerando o offset
-      if (scrollY + offset >= sectionTop && scrollY + offset < sectionBottom) {
-        activeSectionId = section.id;
-        break; // Encontrou a seção ativa, pode parar de verificar
+    // Corrige a última seção (Fale Conosco): como não há espaço para rolar
+    // além dela, o cálculo acima pode nunca ser satisfeito. Forçamos a
+    // ativação do último link ao chegar perto do fim da página.
+    const isNearBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+    if (isNearBottom && sections.length) {
+      const lastSection = sections[sections.length - 1];
+      const lastId = lastSection.getAttribute('id');
+      const lastNavLink = document.querySelector(`.nav__link[href*=${lastId}]`);
+      if (lastNavLink) {
+        navLinks.forEach(link => link.classList.remove('nav__link--active'));
+        lastNavLink.classList.add('nav__link--active');
       }
     }
-
-    navLinks.forEach(link => {
-      const sectionId = link.getAttribute('href').substring(1);
-      link.classList.toggle('nav__link--active', sectionId === activeSectionId);
-    });
   };
   window.addEventListener('scroll', () => {
     onScroll();
-    handleHeaderScroll();
   });
 
   // ==========================================================
@@ -121,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- LÓGICA DO SIMULADOR DE SIMPLES NACIONAL ---
-  const faturamento12mesesInput = document.getElementById('faturamento12meses');
   const faturamentoMensalInput = document.getElementById('faturamentoMensal');
   const tipoAtividadeSelect = document.getElementById('tipoAtividade');
   const folhaPagamentoGroup = document.getElementById('folhaPagamentoGroup');
@@ -268,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tipoAtividade = tipoAtividadeSelect.value;
       
       if (parseFormattedCurrency(faturamentoMensalInput.value) <= 0) {
-        alert('Por favor, preencha o Faturamento dos últimos 12 meses e o Faturamento Mensal.');
+        alert('Por favor, preencha o Faturamento Mensal.');
         return;
       }
 

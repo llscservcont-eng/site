@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planos de Assessoria Contábil | LLSC</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     CSS DE TESTE PARA A SEÇÃO "PLANOS DE ASSESSORIA"
+     Isolado aqui para não mexer no style.css principal ainda.
+     Quando aprovado, essas regras podem ser movidas para style.css.
+     ============================================================ -->
+<style>
+  .plans {
+    padding: 100px 0;
+  }
+
+  .plans__box {
+    width: min(1200px, 92%);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .plans__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .plans__title {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .plans__title em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  .plans__subtitle {
+    font-size: 1rem;
+    color: var(--gray-text);
+    max-width: 620px;
+    margin: 0 auto 56px auto;
+  }
+
+  .plans__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .plan-card {
+    position: relative;
+    background-color: var(--navy-800);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .plan-card--highlight {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(201,162,74,0.08) 0%, var(--navy-800) 35%);
+  }
+
+  .plan-card__badge {
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background-color: var(--gold);
+    color: var(--navy-900);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .plan-card__category {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .plan-card__name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--white);
+    margin-bottom: 20px;
+    min-height: 58px;
+  }
+
+  .plan-card__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .plan-card__currency {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .plan-card__price {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .plan-card__period {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+  }
+
+  .plan-card__price--consult {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .plan-card__price-caption {
+    font-size: 0.8rem;
+    color: var(--gray-text);
+    margin-bottom: 28px;
+  }
+
+  .plan-card__divider {
+    border: none;
+    border-top: 1px solid var(--border-gold);
+    margin: 20px 0 24px 0;
+  }
+
+  .plan-card__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+
+  .plan-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--gray-text);
+    line-height: 1.4;
+  }
+
+  .plan-card__features svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    stroke: var(--gold);
+  }
+
+  .plan-card__cta {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .plan-card__cta.btn--outline {
+    background-color: transparent;
+    color: var(--gold-light);
+    border: 1px solid var(--border-gold);
+  }
+
+  .plan-card__cta.btn--outline:hover {
+    background-color: var(--navy-700);
+    border-color: var(--gold);
+  }
+
+  .plans__note {
+    margin-top: 32px;
+    font-size: 0.8rem;
+    color: var(--gray-text);
+    opacity: 0.75;
+  }
+
+  @media (max-width: 992px) {
+    .plans__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .plans {
+      padding: 70px 0;
+    }
+    .plans__grid {
+      grid-template-columns: 1fr;
+    }
+    .plan-card__name {
+      min-height: unset;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <svg class="logo__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 38V24L14 30V38H6Z" fill="#C9A24A"/>
+        <path d="M17 38V18L25 24V38H17Z" fill="#C9A24A"/>
+        <path d="M28 38V12L36 18V38H28Z" fill="#C9A24A"/>
+        <path d="M4 26L16 16L26 22L40 8" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M32 8H40V16" stroke="#C9A24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__divider"></span>
+      <span class="logo__text">
+        <span class="logo__title">LLSC</span>
+        <span class="logo__subtitle">Lucas Lima Serviços Contábeis</span>
+      </span>
+    </a>
+    <a href="index.html" class="btn btn--gold">Voltar para o Site</a>
+  </div>
+</header>
+
+<!-- ===================== PLANOS DE ASSESSORIA (TESTE) ===================== -->
+<section class="plans" id="planos">
+  <div class="plans__box">
+    <span class="plans__eyebrow">Assessoria Contábil</span>
+    <h2 class="plans__title">Um plano para <em>cada fase</em> do seu negócio</h2>
+    <p class="plans__subtitle">Da abertura do MEI à consultoria estratégica para empresas de Lucro Presumido ou Real, temos um plano de assessoria feito sob medida para o seu porte.</p>
+
+    <div class="plans__grid">
+
+      <!-- Plano 1: MEI Sem Empregados -->
+      <div class="plan-card">
+        <span class="plan-card__category">MEI</span>
+        <h3 class="plan-card__name">Sem Empregados</h3>
+        <div class="plan-card__price-row">
+          <span class="plan-card__currency">R$</span>
+          <span class="plan-card__price">59,90</span>
+        </div>
+        <span class="plan-card__period">por mês</span>
+        <hr class="plan-card__divider">
+        <ul class="plan-card__features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Apuração e emissão do DAS mensal
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Declaração Anual do Simples (DASN-SIMEI)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Suporte contábil via WhatsApp
+          </li>
+        </ul>
+        <a href="https://wa.me/5511982511791?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20MEI%20Sem%20Empregados." target="_blank" class="btn btn--outline plan-card__cta">Contratar</a>
+      </div>
+
+      <!-- Plano 2: MEI Com Empregado -->
+      <div class="plan-card">
+        <span class="plan-card__category">MEI</span>
+        <h3 class="plan-card__name">Com Empregado</h3>
+        <div class="plan-card__price-row">
+          <span class="plan-card__currency">R$</span>
+          <span class="plan-card__price">99,90</span>
+        </div>
+        <span class="plan-card__period">por mês</span>
+        <hr class="plan-card__divider">
+        <ul class="plan-card__features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Tudo do plano MEI Sem Empregados
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Folha de pagamento e envio ao eSocial
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Guias de FGTS e INSS do funcionário
+          </li>
+        </ul>
+        <a href="https://wa.me/5511982511791?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20MEI%20Com%20Empregado." target="_blank" class="btn btn--outline plan-card__cta">Contratar</a>
+      </div>
+
+      <!-- Plano 3: ME e EPP até 5 funcionários (Destaque) -->
+      <div class="plan-card plan-card--highlight">
+        <span class="plan-card__badge">Mais Escolhido</span>
+        <span class="plan-card__category">ME &amp; EPP</span>
+        <h3 class="plan-card__name">Até 5 Funcionários</h3>
+        <div class="plan-card__price-row">
+          <span class="plan-card__currency">R$</span>
+          <span class="plan-card__price">500,00</span>
+        </div>
+        <span class="plan-card__period">por mês</span>
+        <hr class="plan-card__divider">
+        <ul class="plan-card__features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Apuração completa do Simples Nacional
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Departamento pessoal (até 5 colaboradores)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Obrigações acessórias (EFD-Reinf, DCTFWeb)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Suporte contábil dedicado
+          </li>
+        </ul>
+        <a href="https://wa.me/5511982511791?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20ME%20e%20EPP%20(at%C3%A9%205%20funcion%C3%A1rios)." target="_blank" class="btn btn--gold plan-card__cta">Contratar</a>
+      </div>
+
+      <!-- Plano 4: Lucro Presumido e Real -->
+      <div class="plan-card">
+        <span class="plan-card__category">Lucro Presumido &amp; Real</span>
+        <h3 class="plan-card__name">Consultoria Estratégica</h3>
+        <div class="plan-card__price--consult">Consultar um<br>especialista</div>
+        <p class="plan-card__price-caption">Proposta sob medida para o seu porte</p>
+        <hr class="plan-card__divider">
+        <ul class="plan-card__features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Planejamento tributário personalizado
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Apuração de IRPJ, CSLL, PIS/Cofins
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Atendimento dedicado ao porte da empresa
+          </li>
+        </ul>
+        <a href="https://wa.me/5511982511791?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20Lucro%20Presumido%20ou%20Real." target="_blank" class="btn btn--outline plan-card__cta">Falar com um Especialista</a>
+      </div>
+
+    </div>
+
+    <p class="plans__note">*Valores de referência para empresas de serviço com movimentação padrão. Condições podem variar conforme volume de notas fiscais e atividade — fale com a gente para uma proposta personalizada.</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <p class="footer__copy">© 2026 <strong>Lucas Lima Serviços Contábeis</strong> - Todos os direitos reservados</p>
+  <div class="footer__contact">
+    <a href="https://wa.me/5511982511791" target="_blank" class="footer__contact-item">(11) 98251-1791</a>
+    <span class="footer__contact-divider">|</span>
+    <a href="mailto:llscservcont@gmail.com" class="footer__contact-item">llscservcont@gmail.com</a>
+  </div>
+  <div class="footer__social">
+    <a href="https://www.facebook.com/profile.php?id=61592850191911" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M14 9H16V6H14C12.3431 6 11 7.34315 11 9V11H9V14H11V19H14V14H16L17 11H14V9.5C14 9.22386 14.2239 9 14 9Z" stroke="#C9A24A" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="https://www.instagram.com/llscservcont/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#C9A24A" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="#C9A24A" stroke-width="1.3"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A24A"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/139464637/admin/page-posts/published/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 9H2V21H6V9Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

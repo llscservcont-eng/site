@@ -29,22 +29,32 @@
       </span>
     </a>
 
-    <div class="nav-container" id="nav-container">
-      <nav class="nav" id="nav-menu">
-        <a href="#home" class="nav__link nav__link--active">Home</a>
-        <a href="#sobre" class="nav__link">Sobre Nós</a>
-        <a href="#servicos" class="nav__link">Serviços</a>
-        <a href="#noticias" class="nav__link">Notícias</a>
-        <a href="#simuladores" class="nav__link">Simuladores</a>
-        <a href="#contato" class="nav__link">Contato</a>
-      </nav>
+    <div class="header__nav-group">
+      <div class="nav-container" id="nav-container">
+        <nav class="nav" id="nav-menu">
+          <a href="#home" class="nav__link nav__link--active">Home</a>
+          <a href="#sobre" class="nav__link">Sobre Nós</a>
+          <a href="#servicos" class="nav__link">Serviços</a>
+          <a href="#noticias" class="nav__link">Notícias</a>
+          <a href="#simuladores" class="nav__link">Simuladores</a>
+          <a href="#faq" class="nav__link">FAQ</a>
+          <a href="planos-assessoria.html" class="nav__link">Planos</a>
+          <a href="#contato" class="nav__link">Fale Conosco</a>
+        </nav>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-    </button>
-
-    <a href="https://wa.me/5511982511791?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="btn btn--gold">Solicite um Orçamento</a>
+    <a href="https://wa.me/5511982511791?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="btn btn--gold btn-laser">
+      Solicite um Orçamento
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
   </div>
 </header>
 
@@ -74,6 +84,17 @@
   </div>
 </section>
 
+<!-- ===================== CHAMADA PARA PLANOS (CTA) ===================== -->
+<section class="cta-plans">
+  <div class="cta-plans__box">
+    <div class="cta-plans__content">
+      <h2 class="cta-plans__title">Assessoria Contábil Sob Medida para o Seu Negócio</h2>
+      <p class="cta-plans__text">Oferecemos planos flexíveis que se adaptam à realidade da sua empresa, garantindo conformidade fiscal e suporte estratégico para o seu crescimento.</p>
+      <a href="planos-assessoria.html" class="btn btn--gold">Conheça Nossos Planos</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SOBRE NÓS ===================== -->
 <section class="about" id="sobre">
   <div class="about__box">
@@ -91,7 +112,7 @@
       </p>
       <div class="about__crc">
         <strong>Lucas Lima</strong><br>
-        Contador / CEO
+        Contador
       </div>
     </div>
   </div>
@@ -179,8 +200,41 @@
 <!-- ===================== NOTÍCIAS ===================== -->
 <section class="news" id="noticias">
   <div class="news__box">
-    <h2 class="news__title">Últimas Notícias</h2>
-    <div class="news__grid">
+    <h2 class="news__title">Notícias</h2>
+    <div class="news__carousel">
+      <button class="news__arrow news__arrow--prev" id="newsPrev" aria-label="Notícia anterior">&#10094;</button>
+      <div class="news__viewport">
+        <div class="news__grid" id="newsTrack">
+      <!-- Notícia 7 (Nova) -->
+      <div class="news-card">
+        <img src="img/irrf-dividendos.png" alt="Símbolo de porcentagem e dinheiro representando imposto de renda" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Legislação</span>
+          <h3 class="news-card__title">IRRF sobre Lucros e Dividendos: Novas Orientações</h3>
+          <p class="news-card__description">Receita Federal detalha os procedimentos para o recolhimento do imposto de renda retido na fonte sobre lucros e dividendos, conforme a nova Lei nº 15.270/2025...</p>
+          <a href="irrf-lucros-dividendos.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+      <!-- Notícia 6 (Nova) -->
+      <div class="news-card">
+        <img src="img/cgsn-reforma.png" alt="Logo do Simples Nacional com símbolos da reforma tributária" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Reforma Tributária</span>
+          <h3 class="news-card__title">CGSN Atualiza Regras do Simples Nacional para 2027</h3>
+          <p class="news-card__description">Novas regras incorporam IBS e CBS ao regime, atualizam procedimentos e estabelecem novos prazos de opção para a transição da Reforma Tributária...</p>
+          <a href="cgsn-atualiza-regras.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+      <!-- Notícia 5 (Nova) -->
+      <div class="news-card">
+        <img src="img/reforma-2027.png" alt="Calendário marcando o ano de 2027 com foco na reforma tributária" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Reforma Tributária</span>
+          <h3 class="news-card__title">Reforma Tributária 2027: 4 Pontos Operacionais Cruciais</h3>
+          <p class="news-card__description">Prepare seus clientes para as fases de transição do IBS e CBS e evite um 'apagão operacional'. Veja o que o contador não pode deixar para a última hora...</p>
+          <a href="reforma-tributaria-2027.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
       <!-- Notícia 1 -->
       <div class="news-card">
         <img src="img/Reformatribut.png" alt="Documentos e calculadora simbolizando a reforma tributária" class="news-card__image">
@@ -211,7 +265,21 @@
           <a href="simples-nacional-hibrido.html" class="news-card__link">Ler mais</a>
         </div>
       </div>
+      <!-- Notícia 4 -->
+      <div class="news-card">
+        <img src="img/receita.png" alt="Logo da Receita Federal em um fundo digital" class="news-card__image">
+        <div class="news-card__content">
+          <span class="news-card__category">Legislação</span>
+          <h3 class="news-card__title">Receita Suspende Rejeição de Documentos Fiscais</h3>
+          <p class="news-card__description">Em um movimento para se adaptar à Reforma Tributária, a Receita Federal suspendeu temporariamente a rejeição de documentos fiscais com certas inconsistências...</p>
+          <a href="receita-suspende-rejeicao.html" class="news-card__link">Ler mais</a>
+        </div>
+      </div>
+        </div>
+      </div>
+      <button class="news__arrow news__arrow--next" id="newsNext" aria-label="Próxima notícia">&#10095;</button>
     </div>
+    <div class="news__dots" id="newsDots"></div>
   </div>
 </section>
 
@@ -333,26 +401,43 @@
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="faq">
+  <div class="faq__box">
+    <h2 class="faq__title">Perguntas Frequentes</h2>
+    <div class="faq__container">
+      <details class="faq__item">
+        <summary class="faq__question">Quais documentos são necessários para abrir uma empresa?</summary>
+        <div class="faq__answer">
+          <p>Geralmente, você precisará do seu RG, CPF, comprovante de residência, título de eleitor e, se for o caso, o registro do imóvel onde a empresa será estabelecida (IPTU). O processo pode variar um pouco dependendo do tipo de empresa e da sua cidade.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">Posso trocar de contador a qualquer momento?</summary>
+        <div class="faq__answer">
+          <p>Sim, você pode trocar de contador quando desejar. O ideal é comunicar sua decisão ao contador atual e solicitar a documentação necessária para a transição. Nós da LLSC cuidamos de todo o processo de migração para garantir que seja tranquilo e sem interrupções para sua empresa.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">Qual a diferença entre Simples Nacional, Lucro Presumido e Lucro Real?</summary>
+        <div class="faq__answer">
+          <p>São regimes tributários diferentes. O <strong>Simples Nacional</strong> unifica impostos para micro e pequenas empresas. O <strong>Lucro Presumido</strong> tem uma base de cálculo pré-fixada pela lei. Já o <strong>Lucro Real</strong> é baseado no lucro contábil real da empresa. A escolha ideal depende do faturamento, atividade e estrutura de custos do seu negócio.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">Sou MEI, preciso de contador?</summary>
+        <div class="faq__answer">
+          <p>Legalmente, o MEI não é obrigado a ter um contador. No entanto, ter um profissional contábil pode ser muito vantajoso para ajudar no controle financeiro, no planejamento para desenquadramento (quando o faturamento aumenta) e para garantir que todas as obrigações estejam em dia, evitando problemas futuros.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CONTATO ===================== -->
 <section class="contact" id="contato">
   <div class="contact__box">
-    <h2 class="contact__title">Contato</h2>
-
-    <div class="contact__info">
-      <a href="https://wa.me/5511982511791" target="_blank" class="contact__info-item">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.5 4H9L11 9L8.5 10.5C9.5 12.5 11.5 14.5 13.5 15.5L15 13L20 15V17.5C20 18.6 19.1 19.5 18 19.4C11.5 18.9 5.1 12.5 4.6 6C4.5 4.9 5.4 4 6.5 4Z" stroke="#C9A24A" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        (11) 98251-1791
-      </a>
-      <a href="mailto:llscservcont@gmail.com" class="contact__info-item">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="5" width="18" height="14" rx="2" stroke="#C9A24A" stroke-width="1.5"/>
-          <path d="M3 7L12 13L21 7" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        llscservcont@gmail.com
-      </a>
-    </div>
+    <h2 class="contact__title">Fale Conosco</h2>
 
     <form class="contact__form" id="contactForm">
       <div class="contact__form-row">
@@ -366,6 +451,10 @@
         </div>
       </div>
       <div class="contact__form-group">
+        <label for="telefone" class="visually-hidden">Telefone</label>
+        <input type="tel" id="telefone" placeholder="Telefone (Opcional)" class="contact__input">
+      </div>
+      <div class="contact__form-group">
         <label for="mensagem" class="visually-hidden">Mensagem</label>
         <textarea id="mensagem" placeholder="Mensagem" class="contact__textarea" required></textarea>
       </div>
@@ -376,7 +465,12 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer">
-  <p class="footer__copy">© Lucas Lima Serviços Contábeis</p>
+  <p class="footer__copy">© 2026 <strong>Lucas Lima Serviços Contábeis</strong> - Todos os direitos reservados</p>
+  <div class="footer__contact">
+    <a href="https://wa.me/5511982511791" target="_blank" class="footer__contact-item">(11) 98251-1791</a>
+    <span class="footer__contact-divider">|</span>
+    <a href="mailto:llscservcont@gmail.com" class="footer__contact-item">llscservcont@gmail.com</a>
+  </div>
   <div class="footer__social">
     <a href="https://www.facebook.com/profile.php?id=61592850191911" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
       <svg viewBox="0 0 24 24" fill="none"><path d="M14 9H16V6H14C12.3431 6 11 7.34315 11 9V11H9V14H11V19H14V14H16L17 11H14V9.5C14 9.22386 14.2239 9 14 9Z" stroke="#C9A24A" stroke-width="1.3" stroke-linejoin="round"/></svg>

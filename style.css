@@ -59,6 +59,11 @@ img {
   border: 0;
 }
 
+/* Adiciona margem de rolagem para seções com ID para compensar o header fixo */
+section[id] {
+  scroll-margin-top: 100px; /* Ajuste este valor se a altura do header mudar */
+}
+
 /* ==========================================================
    HEADER
    ========================================================== */
@@ -68,11 +73,13 @@ img {
   left: 0;
   width: 100%;
   z-index: 100;
-  transition: background-color 0.3s ease, padding 0.3s ease;
+  background-color: rgba(12, 20, 36, 0.5); /* Inicia semitransparente */
+  backdrop-filter: blur(5px);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 .header.scrolled {
-  background-color: rgba(12, 20, 36, 0.85);
+  background-color: var(--navy-900); /* Fica sólido ao rolar */
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
@@ -128,6 +135,12 @@ img {
   gap: 32px;
 }
 
+.header__nav-group {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Adiciona um espaço controlado entre o menu e o botão */
+  margin-left: auto; /* Mantém todo o grupo à direita */
+}
 .nav__link {
   font-size: 0.9rem;
   font-weight: 400;
@@ -135,6 +148,23 @@ img {
   position: relative;
   padding: 5px 0;
   transition: color 0.25s ease;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gold);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .nav-toggle {
@@ -160,7 +190,9 @@ img {
   color: var(--gold);
   font-weight: 500;
 }
-
+.nav__link--active:hover::after {
+  transform: scaleX(0); /* Esconde a linha no hover do link ativo */
+}
 .nav__link--active::after {
   content: '';
   position: absolute;
@@ -186,6 +218,7 @@ img {
   background-color: var(--gold);
   color: var(--navy-900);
   border-color: var(--gold);
+  margin-left: auto; /* Empurra o botão para a direita */
 }
 
 .btn--gold:hover {
@@ -194,13 +227,88 @@ img {
   box-shadow: 0 8px 20px rgba(201, 162, 74, 0.35);
 }
 
+/* Animação de Laser para o botão */
+.btn-laser {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 5px var(--gold), 0 0 15px var(--gold), 0 0 25px var(--gold);
+}
+
+.btn-laser span {
+  position: absolute;
+  display: block;
+}
+
+.btn-laser span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-light));
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.btn-laser span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--gold-light));
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.375s;
+}
+
+@keyframes btn-anim2 {
+  0% { top: -100%; }
+  50%, 100% { top: 100%; }
+}
+
+.btn-laser span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, var(--gold-light));
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes btn-anim3 {
+  0% { right: -100%; }
+  50%, 100% { right: 100%; }
+}
+
+.btn-laser span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, var(--gold-light));
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: 1.125s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
 /* ==========================================================
    ANIMAÇÕES
    ========================================================== */
-.hero, .about, .feature-card, .services, .news, .simulators, .contact {
+.hero__subtitle, .hero__title, .hero__text, .hero__brand-card, .cta-plans, .about, .feature-card, .service-item, .services, .simulators, .faq, .contact {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, transition-delay 0.3s;
 }
 .visible { opacity: 1; transform: translateY(0); }
 
@@ -208,9 +316,23 @@ img {
    HERO
    ========================================================== */
 .hero {
-  padding-top: 80px; /* Espaço para o header fixo */
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%; /* Aumenta a altura para permitir o movimento */
   background: linear-gradient(rgba(12, 20, 36, 0.8), rgba(12, 20, 36, 0.8)), url('https://www.puc-rio.br/puc/images/noticias/2021/agosto/contabilidade_consultiva.jpg') no-repeat center center;
   background-size: cover;
+  background-attachment: fixed; /* Cria o efeito paralaxe de forma mais simples e robusta */
+  z-index: -1;
 }
 
 .hero__frame {
@@ -242,6 +364,22 @@ img {
   font-size: 1.1rem;
   color: var(--gray-text);
   max-width: 550px;
+}
+
+/* Animação do cursor piscando */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--gold); }
+}
+
+.typing-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--gold);
+  margin-left: 4px;
+  animation: blink-caret 0.75s step-end infinite;
 }
 
 .hero__brand-card {
@@ -284,6 +422,39 @@ img {
   font-size: 0.8rem;
   color: var(--gray-text);
 }
+
+/* ==========================================================
+   CHAMADA PARA PLANOS (CTA)
+   ========================================================== */
+.cta-plans {
+  background-color: var(--navy-800);
+  padding: 60px 0;
+}
+
+.cta-plans__box {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-900));
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+}
+
+.cta-plans__title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+
+.cta-plans__text {
+  color: var(--gray-text);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 32px;
+}
+
 
 /* ==========================================================
    SOBRE NÓS
@@ -430,6 +601,14 @@ img {
 .service-item__icon {
   flex-shrink: 0;
   color: var(--gold);
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.service-item.visible .service-item__icon {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .service-item__icon svg {
@@ -440,6 +619,83 @@ img {
 .service-item__text {
   font-size: 1rem;
   color: var(--gray-text);
+}
+
+/* ==========================================================
+   FAQ
+   ========================================================== */
+.faq {
+  padding: 80px 0;
+  background-color: var(--navy-800);
+}
+
+.faq__box {
+  width: min(900px, 92%);
+  margin-inline: auto;
+}
+
+.faq__title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--gold-light);
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.faq__container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq__item {
+  background-color: var(--navy-700);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.faq__item:hover {
+  background-color: var(--navy-900);
+  border-color: var(--gold);
+}
+
+.faq__question {
+  padding: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none; /* Remove o marcador padrão */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq__question::-webkit-details-marker {
+  display: none; /* Remove o marcador no Chrome/Safari */
+}
+
+.faq__question::after {
+  content: '+';
+  font-size: 1.8rem;
+  color: var(--gold);
+  transition: transform 0.3s ease;
+}
+
+.faq__item[open] > .faq__question::after {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  padding: 0 20px 20px 20px;
+  color: var(--gray-text);
+  line-height: 1.7;
+}
+
+.faq__answer p {
+  border-top: 1px solid var(--border-gold);
+  padding-top: 16px;
 }
 
 /* ==========================================================
@@ -556,14 +812,73 @@ img {
   margin-bottom: 48px;
 }
 
+.news__carousel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.news__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
 .news__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-  text-align: left;
+  display: flex;
+  transition: transform 0.8s ease;
+}
+
+.news__arrow {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-gold);
+  background-color: var(--navy-800);
+  color: var(--gold-light);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.news__arrow:hover {
+  background-color: var(--gold);
+  color: var(--navy-900);
+  transform: scale(1.05);
+}
+
+.news__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.news__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--navy-800);
+  border: 1px solid var(--border-gold);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.news__dot.active {
+  background-color: var(--gold);
+  transform: scale(1.2);
 }
 
 .news-card {
+  flex: 0 0 100%;
+  width: 100%;
+  box-sizing: border-box;
   background-color: var(--navy-800);
   border-radius: 8px;
   overflow: hidden;
@@ -574,7 +889,7 @@ img {
 }
 
 .news-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
@@ -637,6 +952,25 @@ img {
   color: var(--gray-text);
   font-size: 0.9rem;
   margin-bottom: 16px;
+}
+
+.footer__contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  color: var(--gray-text);
+  font-size: 0.9rem;
+}
+
+.footer__contact-item {
+  transition: color 0.3s ease;
+}
+
+.footer__contact-item:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
 }
 
 .footer__social {
@@ -735,13 +1069,126 @@ img {
     flex-direction: column;
   }
 
-  .news__grid {
-    grid-template-columns: 1fr;
+  .news__carousel {
+    gap: 8px;
+  }
+
+  .news__arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
   }
 
   .simulators__title {
     font-size: 2rem;
   }
+}
+
+/* ==========================================================
+   PÁGINA DE PLANOS
+   ========================================================== */
+.plans-page {
+  padding: 120px 0 80px 0;
+}
+
+.plans-page__box {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.plans-page__title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+
+.plans-page__subtitle {
+  font-size: 1.1rem;
+  color: var(--gray-text);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 60px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.plan-card {
+  background-color: var(--navy-800);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 32px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.plan-card--featured {
+  border-width: 2px;
+  border-color: var(--gold);
+  transform: scale(1.05);
+  position: relative;
+}
+
+.plan-card--featured::before {
+  content: 'Mais Popular';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--gold);
+  color: var(--navy-900);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.plan-card__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.plan-card__description {
+  color: var(--gray-text);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  min-height: 40px;
+}
+
+.plan-card__price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+}
+
+.plan-card__features {
+  list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C9A24A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  padding-left: 20px;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.plan-card__features li {
+  color: var(--gray-text);
+  margin-bottom: 12px;
+  padding-left: 10px;
 }
 
 /* ==========================================================
